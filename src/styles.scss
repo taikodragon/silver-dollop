@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+$body-bg: #212529;
+$body-color: #f8f9fa;
+$enable-important-utilities:  false;
+
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-monospace: SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace;
+
+$card-bg: #343a40;
+$input-disabled-bg: #495057;
+@import '../node_modules/bootstrap/scss/bootstrap';
+
