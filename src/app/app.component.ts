@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { interval } from 'rxjs';
 import { Contraction } from './contraction';
 import { formatDuration } from './util';
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
 
   exportData: string = '';
   importShow: boolean = false;
-  importControl = new FormControl();
+  importControl = new UntypedFormControl();
 
   constructor() {
     try {
