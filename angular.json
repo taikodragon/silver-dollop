@@ -75,10 +75,10 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "contraction-timer:build:production"
+              "buildTarget": "contraction-timer:build:production"
             },
             "development": {
-              "browserTarget": "contraction-timer:build:development"
+              "buildTarget": "contraction-timer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "contraction-timer:build"
+            "buildTarget": "contraction-timer:build"
           }
         },
         "test": {
