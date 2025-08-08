@@ -1,41 +1,53 @@
 <div class="text-center">
-    <h1>Contraction Events</h1>
-    <div >
-        <button type="button" role="button" (click)="start()" *ngIf="!inProgress.start" class="btn btn-success btn-lg m-3">Start</button>
-        <button type="button" role="button" (click)="end()" *ngIf="inProgress.start" class="btn btn-danger btn-lg m-3">End</button>
-    </div>
+  <h1>Contraction Events</h1>
+  <div >
+    @if (!inProgress.start) {
+      <button type="button" role="button" (click)="start()" class="btn btn-success btn-lg m-3">Start</button>
+    }
+    @if (inProgress.start) {
+      <button type="button" role="button" (click)="end()" class="btn btn-danger btn-lg m-3">End</button>
+    }
+  </div>
 
-    <div *ngIf="inProgress.start">Apart {{inProgress.apartDuration}}</div>
-    <div class="h2">{{inProgressDelta}}</div>
+  @if (inProgress.start) {
+    <div>Apart {{inProgress.apartDuration}}</div>
+  }
+  <div class="h2">{{inProgressDelta}}</div>
 </div>
 <div class="times">
-    <div class="d-flex">
-        <div class="text-muted me-3">#</div>
-        <div>At &mdash; <b>Length</b> &rarrb; Apart</div>
+  <div class="d-flex">
+    <div class="text-muted me-3">#</div>
+    <div>At &mdash; <b>Length</b> &rarrb; Apart</div>
 
+  </div>
+  @for (r of records; track r; let i = $index) {
+    <div class="d-flex">
+      <div class="text-muted me-3">{{records.length - i}}</div>
+      <div>{{r.atTime}} &mdash; <b>{{r.duration}}</b> &rarrb; {{r.apartDuration}}</div>
     </div>
-    <div *ngFor="let r of records; index as i" class="d-flex">
-        <div class="text-muted me-3">{{records.length - i}}</div>
-        <div>{{r.atTime}} &mdash; <b>{{r.duration}}</b> &rarrb; {{r.apartDuration}}</div>
-    </div>
+  }
 </div>
 <div class="mx-3 my-2">
-    <button type="button" role="button" (click)="reset()" class="btn btn-warning me-3">Reset</button>
-    <button type="button" role="button" (click)="export()" class="btn btn-info me-3">Export</button>
-    <button type="button" role="button" (click)="importToggle()" class="btn btn-info">Import</button>
+  <button type="button" role="button" (click)="reset()" class="btn btn-warning me-3">Reset</button>
+  <button type="button" role="button" (click)="export()" class="btn btn-info me-3">Export</button>
+  <button type="button" role="button" (click)="importToggle()" class="btn btn-info">Import</button>
 </div>
-<div *ngIf="exportData" class="card mx-3 my-2">
+@if (exportData) {
+  <div class="card mx-3 my-2">
     <h3 class="card-header">Data Export</h3>
     <div class="card-body">
-        <textarea readonly class="form-control" rows="3">{{exportData}}</textarea>
-        <button type="button" role="button" (click)="exportDone()" class="btn btn-primary mt-2">Done</button>
+      <textarea readonly class="form-control" rows="3">{{exportData}}</textarea>
+      <button type="button" role="button" (click)="exportDone()" class="btn btn-primary mt-2">Done</button>
     </div>
-</div>
-<div *ngIf="importShow" class="card mx-3 my-2">
+  </div>
+}
+@if (importShow) {
+  <div class="card mx-3 my-2">
     <h3 class="card-header">Data Import</h3>
     <div class="card-body">
-        <textarea class="form-control" rows="3" [formControl]="importControl"></textarea>
-        <button type="button" role="button" (click)="import()" class="btn btn-primary mt-2">Done</button>
+      <textarea class="form-control" rows="3" [formControl]="importControl"></textarea>
+      <button type="button" role="button" (click)="import()" class="btn btn-primary mt-2">Done</button>
     </div>
-</div>
+  </div>
+}
 
